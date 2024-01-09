@@ -1,0 +1,26 @@
+{
+    "id": "C846BC71",
+    "path": "~/GitHub/making_theme/making_theme.R",
+    "project_path": "making_theme.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1704397906018.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "22,33",
+        "scrollLine": "8"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1704745513,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1704745513971,
+    "read_only": false,
+    "read_only_alternatives": []
+}
