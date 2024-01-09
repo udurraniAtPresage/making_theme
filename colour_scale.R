@@ -333,7 +333,14 @@ p2 + scale_color_presage() +
   )
 
 
-
+p2 + scale_color_presage() +
+  theme_presage(
+    base_font = "Salsa",
+    plot.subtitle = ggtext::element_textbox_simple(
+      size = 15, vjust = 1,
+      margin = margin(0, 0, 18, 0)
+    )
+  )
 
 
 
@@ -388,7 +395,10 @@ p3 + scale_fill_presage(continuous = TRUE,
 p3 + scale_fill_presage(continuous = TRUE,
                         palette = "sequential_orange",
                         .direction = -1) +
-  theme_presage()
+  theme_presage(plot.subtitle = ggtext::element_textbox_simple(
+    size = 15, vjust = 1,
+    margin = margin(0, 0, 12, 0)
+  ))
 
 
 
@@ -414,7 +424,7 @@ p4 + scale_fill_presage()
 p4 + scale_fill_presage(palette = "qualitative_palette")
 p4 + scale_fill_presage() +
   theme_presage(
-    base_theme = "light",
+    base_theme = "light", title_face = "bold",
     show_grid = FALSE,
     plot.subtitle = ggtext::element_textbox_simple(
       size = 15, vjust = 1,
@@ -479,4 +489,17 @@ p5 +
     )
   )
 
+
+p5 +
+  scale_fill_presage(
+    palette = "diverging_blue_orange",
+    .direction = -1) +
+  theme_presage(
+    base_theme = "light", title_face = "bold",
+    show_grid = FALSE,
+    plot.subtitle = ggtext::element_textbox_simple(
+      size = 15, vjust = 1,
+      margin = margin(0, 0, 12, 0)
+    )
+  )
 

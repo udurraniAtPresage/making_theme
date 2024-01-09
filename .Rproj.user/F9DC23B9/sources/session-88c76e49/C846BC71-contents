@@ -19,7 +19,12 @@ theme_presage <- function(base_theme = "minimal",
   # Specify base font
   if (base_font != "") {
     if (base_font == "presage") {
-      sysfonts::font_add_google(name = "Libre Franklin")
+      # sysfonts::font_add_google(name = "Libre Franklin")
+      sysfonts::font_add("Libre Franklin",
+                         regular = "LibreFranklin-Light.ttf",
+                         bold = "LibreFranklin-Bold.ttf",
+                         italic = "LibreFranklin-LightItalic.ttf",
+                         bolditalic = "LibreFranklin-BoldItalic.ttf")
       # sysfonts::font_add("benton", regular = "BentonSans Medium.otf")
       # base_font <- "benton"
       # title_font <- "benton"
@@ -31,6 +36,7 @@ theme_presage <- function(base_theme = "minimal",
       title_font <- "Orbitron"
     } else {
       sysfonts::font_add_google(name = base_font)
+      title_font <- base_font
     }
   }
 
@@ -39,7 +45,12 @@ theme_presage <- function(base_theme = "minimal",
   if (!title_font %in% c("presage", "fsi")) {
     sysfonts::font_add_google(name = title_font)
   } else if (title_font %in% c("Libre Franklin", "BentonSans", "presage")) {
-    sysfonts::font_add_google(name = "Libre Franklin")
+    # sysfonts::font_add_google(name = "Libre Franklin")
+    sysfonts::font_add("Libre Franklin",
+                       regular = "LibreFranklin-Light.ttf",
+                       bold = "LibreFranklin-Bold.ttf",
+                       italic = "LibreFranklin-LightItalic.ttf",
+                       bolditalic = "LibreFranklin-BoldItalic.ttf")
     # sysfonts::font_add("benton", regular = "BentonSans Medium.otf")
     # title_font <- "benton"
     title_font <- "Libre Franklin"
