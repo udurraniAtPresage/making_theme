@@ -1,0 +1,45 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE,
+                      dev = "ragg_png",
+                      dpi = 400)
+```
+
+```{r}
+library(ggplot2)
+
+trees |>
+  ggplot(aes(x = Girth, 
+             y = Height,
+             size = Volume,
+             colour = Volume)) +
+  geom_point() +
+  labs(title = "Did the font work? Let's hope so!",
+       subtitle = "If it did, your plot should look the same as this.") +
+  theme_minimal() +
+  theme(text = element_text(family = "Comic Sans MS"),
+        legend.position = "none")
+```
+
+
+```{r}
+systemfonts::register_variant(name = "Karla Medium", family = "Karla", weight = "semibold")
+
+trees |>
+  ggplot(aes(x = Girth, 
+             y = Height,
+             size = Volume,
+             colour = Volume)) +
+  geom_point() +
+  labs(title = "Did the font work? Let's hope so!",
+       subtitle = "The letters are thicker this time") +
+  theme_minimal() +
+  theme(text = element_text(family = "Karla Medium"),
+        legend.position = "none")
+```
+

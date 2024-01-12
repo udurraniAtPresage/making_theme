@@ -2,6 +2,7 @@ library(monochromeR)
 library(colorspace)
 library(tidyverse)
 library(colorblindr)
+library(glue)
 
 
 # Define all colours ------------------------------------------------------
@@ -296,12 +297,7 @@ p
 p + scale_fill_presage()
 p + scale_fill_presage(palette = "qualitative_palette")
 p + scale_fill_presage(palette = "qualitative_palette") +
-  theme_presage(
-    plot.subtitle = ggtext::element_textbox_simple(
-      size = 15, vjust = 1,
-      margin = margin(0, 0, 12, 0)
-      )
-  )
+  theme_presage()
 
 
 
@@ -325,23 +321,17 @@ p2 <- palmerpenguins::penguins %>%
 p2
 p2 + scale_color_presage()
 p2 + scale_color_presage() +
-  theme_presage(
-    plot.subtitle = ggtext::element_textbox_simple(
-      size = 15, vjust = 1,
-      margin = margin(0, 0, 12, 0)
-    )
-  )
+  theme_presage()
+
 
 
 p2 + scale_color_presage() +
-  theme_presage(
-    base_font = "Salsa",
-    plot.subtitle = ggtext::element_textbox_simple(
-      size = 15, vjust = 1,
-      margin = margin(0, 0, 18, 0)
-    )
-  )
+  theme_presage(base_font = "Cascadia Code")
 
+p2 + scale_color_presage() +
+  theme_presage(base_font = "Cascadia Code",
+                title_font = "Cascadia Code",
+                subtitle_font = "Cascadia Code")
 
 
 
@@ -373,12 +363,7 @@ p3 + scale_fill_presage(continuous = TRUE,
 p3 + scale_fill_presage(continuous = TRUE,
                         palette = "sequential_blue",
                         .direction = -1) +
-  theme_presage(
-    plot.subtitle = ggtext::element_textbox_simple(
-      size = 15, vjust = 1,
-      margin = margin(0, 0, 12, 0)
-    )
-  )
+  theme_presage()
 
 
 p3 + scale_fill_presage(continuous = TRUE,
@@ -395,10 +380,7 @@ p3 + scale_fill_presage(continuous = TRUE,
 p3 + scale_fill_presage(continuous = TRUE,
                         palette = "sequential_orange",
                         .direction = -1) +
-  theme_presage(plot.subtitle = ggtext::element_textbox_simple(
-    size = 15, vjust = 1,
-    margin = margin(0, 0, 12, 0)
-  ))
+  theme_presage()
 
 
 
@@ -425,14 +407,18 @@ p4 + scale_fill_presage(palette = "qualitative_palette")
 p4 + scale_fill_presage() +
   theme_presage(
     base_theme = "light", title_face = "bold",
-    show_grid = FALSE,
-    plot.subtitle = ggtext::element_textbox_simple(
-      size = 15, vjust = 1,
-      margin = margin(0, 0, 12, 0)
-    )
+    show_grid = FALSE
   )
 
-
+p4 + scale_fill_presage() +
+  theme_presage(
+    title_face = "bold",
+    show_grid = FALSE
+  ) +
+  theme(
+    strip.background = element_rect(fill = "grey90", colour = "black"),
+    panel.border = element_rect(colour = "black", fill = NA)
+  )
 
 
 
@@ -481,12 +467,7 @@ p5 +
     palette = "diverging_blue_orange",
     .direction = -1) +
   theme_presage(
-    base_theme = "light",
-    show_grid = FALSE,
-    plot.subtitle = ggtext::element_textbox_simple(
-      size = 15, vjust = 1,
-      margin = margin(0, 0, 12, 0)
-    )
+    show_grid = FALSE
   )
 
 
@@ -496,10 +477,28 @@ p5 +
     .direction = -1) +
   theme_presage(
     base_theme = "light", title_face = "bold",
-    show_grid = FALSE,
-    plot.subtitle = ggtext::element_textbox_simple(
-      size = 15, vjust = 1,
-      margin = margin(0, 0, 12, 0)
-    )
+    show_grid = FALSE
   )
 
+
+###### ggtext examples -------------------------------
+
+data <- tibble(
+  bactname = c("Staphylococcaceae", "Moraxella", "Streptococcus", "Acinetobacter"),
+  OTUname = c("OTU 1", "OTU 2", "OTU 3", "OTU 4"),
+  value = c(-0.5, 0.5, 2, 3)
+)
+
+data %>% mutate(
+  color = c("#009E73", "#D55E00", "#0072B2", "#000000"),
+  name = glue("<i style='color:{color}'>{bactname}</i> ({OTUname})"),
+  name = fct_reorder(name, value)
+)  %>%
+  ggplot(aes(value, name, fill = color)) +
+  geom_col(alpha = 0.5) +
+  scale_fill_identity() +
+  labs(caption = "Example posted on **stackoverflow.com**<br>(using made-up data)") +
+  theme(
+    axis.text.y = element_markdown(),
+    plot.caption = element_markdown(lineheight = 1.2)
+  )
