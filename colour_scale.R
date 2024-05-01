@@ -3,7 +3,9 @@ library(colorspace)
 library(tidyverse)
 library(colorblindr)
 library(glue)
+library(ggtext)
 
+source("making_theme2.R")
 
 # Define all colours ------------------------------------------------------
 
@@ -489,7 +491,7 @@ data <- tibble(
   value = c(-0.5, 0.5, 2, 3)
 )
 
-data %>% mutate(
+p7 <- data %>% mutate(
   color = c("#009E73", "#D55E00", "#0072B2", "#000000"),
   name = glue("<i style='color:{color}'>{bactname}</i> ({OTUname})"),
   name = fct_reorder(name, value)
@@ -497,8 +499,155 @@ data %>% mutate(
   ggplot(aes(value, name, fill = color)) +
   geom_col(alpha = 0.5) +
   scale_fill_identity() +
-  labs(caption = "Example posted on **stackoverflow.com**<br>(using made-up data)") +
+  labs(caption = "Example posted on **stackoverflow.com**<br>(using made-up data)")
+
+
+p7 +
   theme(
     axis.text.y = element_markdown(),
     plot.caption = element_markdown(lineheight = 1.2)
   )
+
+
+p7 +
+  theme_presage() +
+  theme(
+    axis.text.y = element_markdown(),
+    plot.caption = element_markdown(lineheight = 1.2)
+  )
+
+
+
+
+
+
+
+p8 <- ggplot(mtcars, aes(disp, mpg)) +
+  geom_point() +
+  labs(
+    title = "<b>Fuel economy vs. engine displacement</b><br>
+    <span style = 'font-size:10pt'>Lorem ipsum *dolor sit amet,*
+    consectetur adipiscing elit, **sed do eiusmod tempor incididunt** ut
+    labore et dolore magna aliqua. <span style = 'color:red;'>Ut enim
+    ad minim veniam,</span> quis nostrud exercitation ullamco laboris nisi
+    ut aliquip ex ea commodo consequat.</span>",
+    x = "displacement (in<sup>3</sup>)",
+    y = "Miles per gallon (mpg)<br><span style = 'font-size:8pt'>A measure of
+    the car's fuel efficiency.</span>"
+  )
+
+
+p8 +
+  theme_presage()
+
+p8 +
+  theme_presage() +
+  theme(
+   axis.title.x = element_textbox_simple(
+      width = NULL,
+      padding = margin(4, 4, 4, 4),
+      margin = margin(4, 0, 0, 0),
+      linetype = 1,
+      r = grid::unit(8, "pt"),
+      fill = "azure1"
+    ),
+    axis.title.y = element_textbox_simple(
+      hjust = 0,
+      orientation = "left-rotated",
+      minwidth = unit(1, "in"),
+      maxwidth = unit(2, "in"),
+      padding = margin(4, 4, 2, 4),
+      margin = margin(0, 0, 2, 0),
+      fill = "lightsteelblue1"
+    )
+  )
+
+
+
+
+
+
+
+
+
+
+
+mtcars %>%
+  mutate(
+    transmission = ifelse(am == 1, "automatic", "manual")
+  ) %>%
+  ggplot(aes(hp, mpg, color = transmission)) +
+  geom_point(size = 2) +
+  scale_color_manual(
+    values = c(automatic = "#0072B2", manual = "#D55E00"),
+    guide = "none"
+  ) +
+  labs(
+    x = "Horse power",
+    y = "Miles per gallon (MPG)",
+    title = "<span style = 'font-size:14pt; font-family:Helvetica;'>Transmission type impacts fuel efficiency</span><br>
+MPG is higher for <span style = 'color:#0072B2;'>automatic</span>
+than for <span style = 'color:#D55E00;'>manual</span> transmissions"
+  ) +
+  theme(
+    text = element_text(family = "Times"),
+    plot.title.position = "plot",
+    plot.title = element_markdown(size = 11, lineheight = 1.2)
+  )
+
+
+mtcars %>%
+  mutate(
+    transmission = ifelse(am == 1, "automatic", "manual")
+  ) %>%
+  ggplot(aes(hp, mpg, color = transmission)) +
+  geom_point(size = 2) +
+  scale_color_presage() +
+  labs(
+    x = "Horse power",
+    y = "Miles per gallon (MPG)",
+    title = "Transmission type impacts fuel efficiency",
+    subtitle = "MPG is higher for <span style = 'color:#0072bc;'>**automatic**</span>
+than for <span style = 'color:#39b54a;'>**manual**</span> transmissions"
+  ) +
+  theme_presage()
+
+
+
+
+
+
+
+mtcars %>%
+  mutate(
+    transmission = ifelse(am == 1, "automatic", "manual")
+  ) %>%
+  ggplot(aes(hp, mpg, color = transmission)) +
+  geom_point(size = 2) +
+  scale_color_presage(palette = "diverging_two") +
+  labs(
+    x = "Horse power",
+    y = "Miles per gallon (MPG)",
+    title = "**Transmission type impacts fuel efficiency**",
+    subtitle = "MPG is higher for <span style = 'color:#0072B2;'>**automatic**</span>
+than for <span style = 'color:#D55E00;'>**manual**</span> transmissions"
+  ) +
+  theme_presage()
+
+
+mtcars %>%
+  mutate(
+    transmission = ifelse(am == 1, "automatic", "manual")
+  ) %>%
+  ggplot(aes(hp, mpg, color = transmission)) +
+  geom_point(size = 2) +
+  scale_color_presage(palette = "diverging_two") +
+  labs(
+    x = "Horse power",
+    y = "Miles per gallon (MPG)",
+    title = "**<i>Transmission type</i> impacts fuel efficiency**",
+    subtitle = "MPG is higher for <span style = 'color:#0072B2;'>**automatic**</span>
+than for <span style = 'color:#D55E00;'>**manual**</span> transmissions"
+  ) +
+  theme_presage()
+

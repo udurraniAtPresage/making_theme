@@ -26,7 +26,6 @@ trees |>
         legend.position = "none")
 ```
 
-
 ```{r}
 systemfonts::register_variant(name = "Karla Medium", family = "Karla", weight = "semibold")
 
@@ -42,4 +41,3 @@ trees |>
   theme(text = element_text(family = "Karla Medium"),
         legend.position = "none")
 ```
-

@@ -55,12 +55,6 @@ theme_presage <- function(base_theme = "minimal",
       # panel
       panel.grid = element_line(color = ifelse(show_grid, "gray92", "transparent")),
 
-      # strip
-      # strip.background = element_rect(fill = strip_fill),
-
-      # axis
-      # axis.line = element_line(color = ifelse(show_grid, "transparent", "black"), linewidth = 0.5, lineend = "round"),
-      # axis.ticks = element_line(color = ifelse(show_grid, "transparent", "grey20"), linewidth = 0.5, lineend = "round"),
       ...
     )
 }
