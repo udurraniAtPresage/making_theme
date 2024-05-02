@@ -301,7 +301,7 @@ p + scale_fill_presage(palette = "qualitative_palette")
 p + scale_fill_presage(palette = "qualitative_palette") +
   theme_presage()
 
-
+colorblindr::cvd_grid()
 
 
 
@@ -385,7 +385,7 @@ p3 + scale_fill_presage(continuous = TRUE,
   theme_presage()
 
 
-
+colorblindr::cvd_grid()
 
 
 
@@ -411,6 +411,8 @@ p4 + scale_fill_presage() +
     base_theme = "light", title_face = "bold",
     show_grid = FALSE
   )
+
+colorblindr::cvd_grid()
 
 p4 + scale_fill_presage() +
   theme_presage(

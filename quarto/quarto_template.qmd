@@ -1,0 +1,63 @@
+---
+title: "Go-Around Decision-Making & Execution"
+subtitle: "Presage Group Inc."
+format:
+  pptx:
+    reference-doc: template.pptx
+    incremental: true   
+---
+
+## Agenda
+
+1. The Presage Intellectual Property (IP) 
+2. Proven results 
+3. Phased Methodology and Timeline 
+4. Next Steps 
+
+## Presage: What are we all about
+
+- Pre (early) Sage (Wisdom) – To Foretell – To Predict
+- Presage has Intellectual Property (IP) that assesses human decision-making in the moment - ***that no one else in the world has***
+- Presage wraps this cloud based - global reach IP around a ***near-time analytical and reporting software solution that identifies, quantifies and mitigates*** the psychological, social, operational and cultural drivers for employee non-compliance to policies and procedures 
+- ***The safety/risk, financial and cultural ROIs are realized across the board***, with significant improvements in leadership accountabilities, operational efficiencies, key safety and risk performance metrics, and employee/customer retention and satisfaction  
+
+## Breakfast
+
+- Eat eggs
+- Drink coffee
+
+---
+
+- Slide with no title   
+
+This is not a bullet point
+
+## Slide with explicit incremental list
+
+::: {.incremental}
+
+- Eat spaghetti
+- Drink water
+
+:::
+
+## Multiple Columns 
+
+:::: {.columns}
+
+::: {.column width="40%"}
+contents...
+:::
+
+::: {.column width="60%"}
+contents...
+:::
+
+::::
+
+
+## Slide with background image {background-image="tusik-only-Fde7w9q0sWw-unsplash.jpg"}
+
+
+
+
